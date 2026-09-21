@@ -1,0 +1,17 @@
+node_modules/
+.next/
+coverage/
+.DS_Store
+*.log
+.env*
+!.env.example
+
+# Antigravity IDE Customizations
+.agent/
+.agents/
+
+# Testing artifacts
+.playwright-mcp/
+
+# AI Studio & Temporary Assets
+assets/
