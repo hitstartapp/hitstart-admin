@@ -41,27 +41,23 @@ export default function LoginPage() {
   };
 
   return (
-    <main className="min-h-screen w-full flex items-center justify-center bg-radial from-slate-900 via-slate-950 to-black p-4 relative overflow-hidden">
-      {/* Dynamic Background Elements */}
-      <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full bg-blue-600/10 blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full bg-emerald-600/10 blur-[120px] pointer-events-none" />
-
+    <main className="min-h-screen w-full flex flex-col items-center justify-center bg-slate-50 p-4 relative overflow-hidden font-sans">
       {/* Login Card */}
-      <div className="w-full max-w-md bg-slate-900/60 backdrop-blur-xl border border-slate-800/80 p-8 rounded-3xl shadow-2xl relative z-10 transition-all duration-300">
+      <div className="w-full max-w-md bg-white border border-slate-200 p-8 rounded-2xl shadow-xs relative z-10 transition-all duration-300">
         
         {/* Brand Logo and Title */}
         <div className="flex flex-col items-center text-center mb-8">
-          <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center shadow-lg shadow-blue-500/20 mb-4 animate-pulse">
+          <div className="w-14 h-14 rounded-2xl bg-slate-50 flex items-center justify-center border border-slate-200 mb-4 shadow-sm">
             <img src="/app_icon.png" alt="Hitstart Logo" className="w-9 h-9 object-cover rounded-lg" />
           </div>
-          <h1 className="text-2xl font-bold text-white tracking-tight">Hitstart Admin</h1>
-          <p className="text-slate-400 text-sm mt-1">Sign in to manage the administrative dashboard</p>
+          <h1 className="text-2xl font-semibold text-slate-800 tracking-tight">Hitstart Admin</h1>
+          <p className="text-slate-500 text-sm mt-1">Sign in to manage the administrative dashboard</p>
         </div>
 
         {/* Error Alert */}
         {errorMessage && (
-          <div className="mb-6 p-4 bg-red-950/40 border border-red-800/50 rounded-2xl text-red-200 text-sm flex items-start gap-2">
-            <span className="text-red-400 font-bold">Error:</span>
+          <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl text-red-700 text-sm flex items-start gap-2">
+            <span className="font-bold">Error:</span>
             <span>{errorMessage}</span>
           </div>
         )}
@@ -69,38 +65,42 @@ export default function LoginPage() {
         {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-5">
           {/* Email */}
-          <div className="space-y-1.5">
-            <label className="text-xs font-semibold text-slate-300 uppercase tracking-wider pl-1">Email Address</label>
+          <div className="flex flex-col gap-1.5">
+            <label className="text-xs font-bold text-slate-600 pl-1">
+              Email Address <span className="text-red-500">*</span>
+            </label>
             <div className="relative">
-              <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" size={18} />
+              <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
               <input
                 type="email"
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="admin@hitstart.co"
-                className="w-full pl-11 pr-4 py-3 bg-slate-950/50 border border-slate-800 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/25 rounded-2xl text-white placeholder-slate-600 focus:outline-none transition-all duration-200"
+                className="w-full pl-11 pr-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all bg-slate-50 focus:bg-white font-medium text-slate-800 text-sm disabled:bg-slate-50 disabled:text-slate-400"
               />
             </div>
           </div>
 
           {/* Password */}
-          <div className="space-y-1.5">
-            <label className="text-xs font-semibold text-slate-300 uppercase tracking-wider pl-1">Password</label>
+          <div className="flex flex-col gap-1.5">
+            <label className="text-xs font-bold text-slate-600 pl-1">
+              Password <span className="text-red-500">*</span>
+            </label>
             <div className="relative">
-              <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" size={18} />
+              <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
               <input
                 type={showPassword ? 'text' : 'password'}
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
-                className="w-full pl-11 pr-11 py-3 bg-slate-950/50 border border-slate-800 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/25 rounded-2xl text-white placeholder-slate-600 focus:outline-none transition-all duration-200"
+                className="w-full pl-11 pr-11 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all bg-slate-50 focus:bg-white font-medium text-slate-800 text-sm disabled:bg-slate-50 disabled:text-slate-400"
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300 focus:outline-none"
+                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 focus:outline-none"
               >
                 {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
               </button>
@@ -111,11 +111,11 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full py-3.5 px-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 active:scale-[0.98] text-white font-semibold rounded-2xl shadow-lg shadow-blue-500/10 focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed mt-2"
+            className="w-full py-3 px-4 bg-indigo-600 hover:bg-indigo-700 active:scale-[0.98] text-white font-semibold rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed mt-2 text-sm"
           >
             {isLoading ? (
               <>
-                <Loader2 size={18} className="animate-spin" />
+                <Loader2 size={16} className="animate-spin" />
                 Signing in...
               </>
             ) : (
@@ -127,3 +127,4 @@ export default function LoginPage() {
     </main>
   );
 }
+

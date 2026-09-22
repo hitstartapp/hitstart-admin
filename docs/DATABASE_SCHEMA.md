@@ -10,6 +10,8 @@ The dashboard interacts with the following Supabase PostgreSQL tables:
 | `AccountDeletionRequest` | `id` (PK, UUID), `user_id` (FK), `requested_at`, `status` ('pending' \| 'rejected' \| 'approved'), `processed_at`, `reason` | User GDPR/account deletion queue |
 | `WorkoutTracking` | `id`, `user_id`, `assigned_date`, ... | Daily workout completion log |
 | `WaterTracking` | `id`, `user_id`, `date`, ... | Daily water consumption tracking |
+| `WeightTracking` | `id` (PK, UUID), `user_id` (FK), `date`, `weight` | Daily user weight tracking |
+| `WeightCategory` | `id` (PK, int), `range_from`, `range_to` | Weight ranges for plan categorization |
 
 ## 2. Workouts & Exercises
 | Table | Key Fields | Description |
@@ -26,7 +28,7 @@ The dashboard interacts with the following Supabase PostgreSQL tables:
 | `MealPlan` | `id` (PK, UUID), `name`, `dietary_preference`, `fitness_goal`, `gender`, `weight_range_from`, `weight_range_to`, `is_paid` (bool), `price`, `package_id`, `note` | Master dietary meal plans |
 | `Meal` | `id` (PK, UUID), `meal_plan` (FK), `name`, `display_type` ('header' \| 'item'), `meal_order` | Sections/meal categories within a plan |
 | `MealItem` | `id` (PK, UUID), `meal` (FK), `name`, `note` | Specific meal items within a section |
-| `MealItemFoodMap` | `meal_item` (FK), `food` (FK) | Join table between meal items and food records |
+| `MealItemFood` | `meal_item` (FK), `food` (FK) | Join table between meal items and food records |
 | `Food` | `id` (PK, int/UUID), `name` | Master food and ingredient library |
 | `MealPurchase` | `id` (PK, UUID), `user_id` (FK), `meal_plan` (FK), `package_id`, `purchase_date`, `status` | Meal plan purchase ledger |
 
