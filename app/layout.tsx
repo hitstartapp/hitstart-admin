@@ -1,12 +1,15 @@
-import type {Metadata} from 'next';
+import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
   title: 'Hitstart Admin Dashboard',
   description: 'An administrative dashboard for Hitstart.',
+  icons: {
+    icon: "/appicon.png",
+  },
 };
 
-export default function RootLayout({children}: {children: React.ReactNode}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body suppressHydrationWarning>
